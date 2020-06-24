@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private Animator thisAnimator = null;
 
     private float moveSpeed = 0.05f;
+    public GameObject Explosion;
 
     void Start()
     {
@@ -49,9 +50,22 @@ public class Player : MonoBehaviour
             else
                 MoveDirection.y += JumpValue * Time.deltaTime;
         }
-
+        
         thisController.Move(MoveDirection);
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -1.5f, 1.5f), transform.position.y, transform.position.z);
+    }
+ 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag=="Obs")
+        {
+            GameObject Clone= Instantiate(Explosion, transform.position, Quaternion.identity);
+            Destroy(Clone, 0.3f);
+            Destroy(other.gameObject);
+            GameManager.ThisManager.LoseLife();
+            HUD.HUDManager.UpdateLives();
+
+        }
     }
 
 }
