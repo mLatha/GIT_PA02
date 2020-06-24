@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Lives = 3;
+        
         Score = 0;
         Time.timeScale = 0;
         CurrentState = GameState.GameIdle;
@@ -32,5 +32,14 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+    }
+    public void UpdateLives()
+    {
+        Lives -= 1;
+    }
+
+    public void UpdateScore()
+    {
+        Score += 1;
     }
 }
