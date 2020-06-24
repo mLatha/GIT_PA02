@@ -7,6 +7,7 @@ public class Obstacles : MonoBehaviour
     [SerializeField] private int Hitpoints = 3;
     [SerializeField] private bool RandomRotation = false;
     public GameObject Explosion;
+    public GameObject Player;
     public float delay = 1; 
 
     private void Start()
@@ -33,8 +34,9 @@ public class Obstacles : MonoBehaviour
         {
             GameManager.Lives--;
             HUD.HUDManager.UpdateLives();
+            Destroy(gameObject);
 
-            GameObject Boom = Instantiate(Explosion, Vector3.zero, Quaternion.identity);
+            GameObject Boom = Instantiate(Explosion, transform.position, Quaternion.identity);
             Destroy(Boom, 0.8f);
 
             if(GameManager.Lives <= 0)
