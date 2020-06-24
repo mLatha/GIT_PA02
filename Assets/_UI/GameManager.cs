@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour
 
     public static int Lives = 3;
     public static int Score = 0;
+ 
 
     void Start()
     {
+
         Lives = 3;
         Score = 0;
         Time.timeScale = 0;
